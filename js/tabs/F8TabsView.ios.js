@@ -76,7 +76,7 @@ class F8TabsView extends React.Component {
           />
         </TabBarItemIOS>
         <TabBarItemIOS
-          title="My F8"
+          title="My Team Hug"
           selected={this.props.tab === 'my-schedule'}
           onPress={this.onTabSelect.bind(this, 'my-schedule')}
           icon={require('./schedule/img/my-schedule-icon.png')}

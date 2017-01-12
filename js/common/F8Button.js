@@ -58,7 +58,7 @@ class F8Button extends React.Component {
       content = (
         <LinearGradient
           start={[0.5, 1]} end={[1, 1]}
-          colors={['#6A6AD5', '#6F86D9']}
+          colors={['#26BDCF', '#26BDCF']}
           style={[styles.button, styles.primaryButton]}>
           {icon}
           <Text style={[styles.caption, styles.primaryCaption]}>

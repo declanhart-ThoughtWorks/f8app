@@ -92,7 +92,7 @@ class MyScheduleView extends React.Component {
 
     return (
       <ListContainer
-        title="My F8"
+        title="My Team Hug"
         parallaxContent={profilePicture}
         backgroundImage={require('./img/my-f8-background.png')}
         backgroundColor={'#A8D769'}
@@ -141,7 +141,7 @@ class MyScheduleView extends React.Component {
         key="login"
         title="Log in to make a schedule."
         text="You’ll be able to save sessions to your schedule to view or share later.">
-        <LoginButton source="My F8" />
+        <LoginButton source="My Team Hug" />
       </EmptySchedule>
     );
   }

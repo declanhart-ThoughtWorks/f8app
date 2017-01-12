@@ -57,11 +57,11 @@ class SharingSettingsCommon extends React.Component {
         </Image>
         <View style={styles.content}>
           <Heading1 style={styles.h1}>
-            Let friends view your schedule in the F8 app?
+            Let friends view your schedule in the Team Hug app?
           </Heading1>
           <Paragraph style={styles.p}>
-            This will not post to Facebook. Only friends using the F8 app will
-            be able to see your schedule in their My F8 tab.
+            This will not post to Facebook. Only friends using the Team Hug app will
+            be able to see your schedule in their My Team Hug tab.
           </Paragraph>
         </View>
       </View>

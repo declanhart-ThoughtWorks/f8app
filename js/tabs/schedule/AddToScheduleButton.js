@@ -59,7 +59,7 @@ class AddToScheduleButton extends React.Component {
   }
 
   render() {
-    const colors = this.props.isAdded ? ['#4DC7A4', '#66D37A'] : ['#6A6AD5', '#6F86D9'];
+    const colors = this.props.isAdded ? ['#11AA58', '#11AA58'] : ['#26BDCF', '#26BDCF'];
 
     const addOpacity = {
       opacity: this.state.anim.interpolate({
