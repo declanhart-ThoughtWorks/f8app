@@ -29,6 +29,7 @@ var F8InfoView = require('F8InfoView');
 var F8Colors = require('F8Colors');
 var F8MapView = require('F8MapView');
 var F8NotificationsView = require('F8NotificationsView');
+var F8TravelView = require('F8TravelView');
 var React = require('React');
 var Navigator = require('Navigator');
 var F8DrawerLayout = require('F8DrawerLayout');
@@ -172,6 +173,13 @@ class F8TabsView extends React.Component {
           icon={require('./info/img/info-icon.png')}
           selectedIcon={require('./info/img/info-icon-active.png')}
         />
+        <MenuItem
+          title="Travel"
+          selected={this.props.tab === 'travel'}
+          onPress={this.onTabSelect.bind(this, 'travel')}
+          icon={require('./info/img/info-icon.png')}
+          selectedIcon={require('./info/img/info-icon-active.png')}
+        />
         {loginItem}
       </View>
     );
@@ -202,6 +210,13 @@ class F8TabsView extends React.Component {
 
       case 'info':
         return <F8InfoView navigator={this.props.navigator} />;
+
+      case 'travel':
+        return <F8TravelView departure="Brisbane"
+        arrival="Melbourne"
+        flightNumber="QF623"
+        departureTime="1:55pm"
+        navigator={this.props.navigator} />;
     }
     throw new Error(`Unknown tab ${this.props.tab}`);
   }
