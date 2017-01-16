@@ -23,6 +23,8 @@
  */
 'use strict';
 
+import SegmentedControlTab from 'react-native-segmented-control-tab';
+
 var Clipboard = require('Clipboard');
 var F8Button = require('F8Button');
 var ToastAndroid = require('ToastAndroid');
@@ -56,6 +58,10 @@ class WiFiDetails extends React.Component {
       : 'Copy password';
     return (
       <Section title="WiFi" style={styles.container}>
+      <SegmentedControlTab
+               values={['First', 'Second', 'Third']}
+               onTabPress= {index => console.log(index)}
+               />
         <ItemsWithSeparator>
           <Row label="Network" value={this.props.network} />
           <Row label="Password" value={this.props.password} />
@@ -65,6 +71,7 @@ class WiFiDetails extends React.Component {
           onPress={this.handleCopy.bind(this)}
           caption={caption}
         />
+
       </Section>
     );
   }
