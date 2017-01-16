@@ -28,6 +28,7 @@
 var F8Colors = require('F8Colors');
 var F8InfoView = require('F8InfoView');
 var F8MapView = require('F8MapView');
+var F8TravelView = require('F8TravelView');
 var F8NotificationsView = require('F8NotificationsView');
 var GeneralScheduleView = require('./schedule/GeneralScheduleView');
 var MyScheduleView = require('./schedule/MyScheduleView');
@@ -74,6 +75,18 @@ class F8TabsView extends React.Component {
           <GeneralScheduleView
             navigator={this.props.navigator}
           />
+        </TabBarItemIOS>
+        <TabBarItemIOS
+          title="Travel"
+          selected={this.props.tab === 'travel'}
+          onPress={this.onTabSelect.bind(this, 'travel')}
+          icon={require('./info/img/info-icon.png')}
+          selectedIcon={require('./info/img/info-icon-active.png')}>
+          <F8TravelView departure="Brisbane"
+          arrival="Melbourne"
+          flightNumber="QF623"
+          departureTime="1:55pm"
+          navigator={this.props.navigator} />
         </TabBarItemIOS>
         <TabBarItemIOS
           title="My Team Hug"
