@@ -24,7 +24,6 @@
  */
 'use strict';
 
-var TravelInfo = require('./TravelInfo');
 var LinksList = require('./LinksList');
 var ListContainer = require('ListContainer');
 var PureListView = require('../../common/PureListView');
@@ -65,10 +64,6 @@ function InfoList({viewer: {config, faqs, pages}, ...props}) {
             network={config.wifiNetwork}
             password={config.wifiPassword}
           />
-          <TravelInfo departure="Brisbane"
-          arrival="Melbourne"
-          flightNumber="QF623"
-          departureTime="1:55pm" />
           <LinksList title="Facebook pages" links={pages} />
           <LinksList title="Facebook policies" links={POLICIES_LINKS} />
         </View>
