@@ -28,6 +28,7 @@ var ActionSheetIOS = require('ActionSheetIOS');
 var F8Button = require('F8Button');
 var PureListView = require('../../common/PureListView');
 var ItemsWithSeparator = require('../../common/ItemsWithSeparator');
+var CityView = require('./CityView');
 var Linking = require('Linking');
 var Platform = require('Platform');
 var ListContainer = require('ListContainer');
@@ -39,12 +40,7 @@ var { connect } = require('react-redux');
 var { Text } = require('F8Text');
 var F8Colors = require('F8Colors');
 
-type Props = {
-  departure: string;
-  arrival: string;
-  flightNumber: string;
-  departureTime: string;
-};
+type Props = {cities: []};
 
 class F8TravelView extends React.Component {
   constructor() {
@@ -53,8 +49,6 @@ class F8TravelView extends React.Component {
   }
 
   render() {
-    const {map1, map2} = this.props;
-
     return (
       <View style={styles.container}>
         <ListContainer
@@ -63,66 +57,29 @@ class F8TravelView extends React.Component {
           backgroundColor={'#9176D2'}>
           <PureListView
             title="BNE"
-            renderEmptyList={() => <ItemsWithSeparator style={styles.move}>
-              <Row label="Departure" value={this.props.departure} />
-              <Row label="Arrival" value={this.props.arrival} />
-              <Row label="Flight Number" value={this.props.flightNumber} />
-              <Row label="Departure Time" value={this.props.departureTime} />
-            </ItemsWithSeparator>}
+            renderEmptyList={() => <CityView city="BNE"/>
+          }
           />
           <PureListView
-            title="Syd"
-            renderEmptyList={() => <ItemsWithSeparator style={styles.move}>
-              <Row label="Departure" value={this.props.arrival} />
-              <Row label="Arrival" value={this.props.arrival} />
-              <Row label="Flight Number" value={this.props.flightNumber} />
-              <Row label="Departure Time" value={this.props.departureTime} />
-            </ItemsWithSeparator>}
+            title="SYD"
+            renderEmptyList={() => <CityView city="SYD"/>
+          }
           />
           <PureListView
-            title="Mel"
-            renderEmptyList={() => <ItemsWithSeparator style={styles.move}>
-              <Row label="Departure" value={this.props.arrival} />
-              <Row label="Arrival" value={this.props.arrival} />
-              <Row label="Flight Number" value={this.props.flightNumber} />
-              <Row label="Departure Time" value={this.props.departureTime} />
-            </ItemsWithSeparator>}
+            title="MEL"
+            renderEmptyList={() => <CityView city="MEL"/>
+          }
           />
           <PureListView
-            title="Per"
-            renderEmptyList={() => <ItemsWithSeparator style={styles.move}>
-              <Row label="Departure" value={this.props.arrival} />
-              <Row label="Arrival" value={this.props.arrival} />
-              <Row label="Flight Number" value={this.props.flightNumber} />
-              <Row label="Departure Time" value={this.props.departureTime} />
-            </ItemsWithSeparator>}
+            title="PER"
+            renderEmptyList={() => <CityView city="PER"/>
+          }
           />
         </ListContainer>
       </View>
     );
   }
 }
-
-class Row extends React.Component {
-  props: {
-    label: string;
-    value: string;
-  };
-
-  render() {
-    return (
-      <View style={styles.row}>
-        <Text style={styles.label}>
-          {this.props.label.toUpperCase()}
-        </Text>
-        <Text style={styles.value}>
-          {this.props.value}
-        </Text>
-      </View>
-    );
-  }
-}
-
 
 var styles = StyleSheet.create({
   container: {

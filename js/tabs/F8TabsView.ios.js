@@ -82,10 +82,10 @@ class F8TabsView extends React.Component {
           onPress={this.onTabSelect.bind(this, 'travel')}
           icon={require('./info/img/info-icon.png')}
           selectedIcon={require('./info/img/info-icon-active.png')}>
-          <F8TravelView departure="Brisbane"
-          arrival="Melbourne"
-          flightNumber="QF623"
-          departureTime="1:55pm"
+          <F8TravelView info={["Brisbane",
+          "Melbourne",
+          "QF623",
+          "1:55pm"]}
           navigator={this.props.navigator} />
         </TabBarItemIOS>
         <TabBarItemIOS
