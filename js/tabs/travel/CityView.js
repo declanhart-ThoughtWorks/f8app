@@ -14,6 +14,7 @@ var View = require('View');
 var { connect } = require('react-redux');
 var { Text } = require('F8Text');
 var F8Colors = require('F8Colors');
+var Image = require('Image');
 
 type Props = {
     city: string;
@@ -31,12 +32,20 @@ class CityView extends React.Component {
         var rows = [];
 
         travelDetail.trips.forEach((trip) => {
-             rows.push(<ItemsWithSeparator style={styles.move}>
-             <Row label="Departure" value={trip.departure} />
-             <Row label="Arrival" value={trip.arrival} />
-             <Row label={trip.mode + " Number"} value={trip.vehicleID} />
-             <Row label="Departure Time" value={trip.departureTime} />
-             </ItemsWithSeparator>
+          // couldn't just concatenate the trip.mode to the image src: https://facebook.github.io/react-native/docs/images.html
+            var icon = trip.mode=="Flight" ? require('./img/Flight-icon.png') : require('./img/Bus-icon.png');
+             rows.push(
+                <View>
+                  <View style={styles.iconContainer}>
+                    <Image source={icon} style={styles.icon} />
+                  </View>
+                  <ItemsWithSeparator style={styles.move}>
+                    <Row label="Departure" value={trip.departure} />
+                    <Row label="Arrival" value={trip.arrival} />
+                    <Row label={trip.mode + " Number"} value={trip.vehicleID} />
+                    <Row label="Departure Time" value={trip.departureTime} />
+                  </ItemsWithSeparator>
+                </View>
             )})
          return <View>{rows}</View>
       }});
@@ -107,10 +116,22 @@ var styles = StyleSheet.create({
     },
   },
   move: {
-    paddingTop: 50,
     paddingHorizontal: 50,
-    backgroundColor: 'white'
-  }
+    paddingBottom: 50,
+    backgroundColor: 'white',
+    borderBottomWidth: 1,
+    borderBottomColor: '#eee',
+  },
+  icon: {
+    width: 100,
+    height: 80,
+    margin: 2
+  },
+  iconContainer: {
+    paddingTop: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 var travelDetails = [
