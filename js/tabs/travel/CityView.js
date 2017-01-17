@@ -26,26 +26,21 @@ class CityView extends React.Component {
   }
 
   buildRender() {
-    return travelDetails.map((detail) => {
-      if(detail.origin == this.props.city) {
-        return (
-          <View>
-          <ItemsWithSeparator style={styles.move}>
-            <Row label="Departure" value={detail.departure} />
-            <Row label="Arrival" value={detail.arrival} />
-            <Row label="Flight Number" value={detail.flightNumber} />
-            <Row label="Departure Time" value={detail.departureTime} />
-          </ItemsWithSeparator>
-          <ItemsWithSeparator style={styles.move}>
-            <Row label="Departure" value={detail.arrival} />
-            <Row label="Arrival" value={detail.departure} />
-            <Row label="Flight Number" value={detail.flightNumber} />
-            <Row label="Departure Time" value={detail.departureTime} />
-          </ItemsWithSeparator>
-          </View>
-        )}
-        return null;
-      });
+    return travelDetails.map((travelDetail) => {
+      if(travelDetail.origin == this.props.city) {
+        var rows = [];
+
+        travelDetail.trips.forEach((trip) => {
+             rows.push(<ItemsWithSeparator style={styles.move}>
+             <Row label="Departure" value={trip.departure} />
+             <Row label="Arrival" value={trip.arrival} />
+             <Row label="Flight Number" value={trip.flightNumber} />
+             <Row label="Departure Time" value={trip.departureTime} />
+           </ItemsWithSeparator>
+         )})
+
+         return <View>{rows}</View>
+      }});
   }
 
   render() {
@@ -120,9 +115,21 @@ var styles = StyleSheet.create({
 });
 
 var travelDetails = [
-  {origin: "BNE", departure: "Brisbane", arrival: "Melbourne", flightNumber: "QF623", departureTime: "1:55pm"},
-  {origin: "MEL", departure: "Melbourne", arrival: "Melbourne", flightNumber: "QF623", departureTime: "1:55pm"},
-  {origin: "SYD", departure: "Sydney", arrival: "Melbourne", flightNumber: "QFXXX", departureTime: "1:55pm"},
-  {origin: "PER", departure: "Perth", arrival: "Melbourne", flightNumber: "QF623", departureTime: "1:55pm"},
+  {origin: "BNE", trips: [
+    {departure: "Brisbane", arrival: "Melbourne", flightNumber: "QF623", departureTime: "1:55pm"},
+    {departure: "Brisbane", arrival: "Melbourne", flightNumber: "QF623", departureTime: "1:55pm"},
+    {departure: "vasd", arrival: "Melbourne", flightNumber: "QF623", departureTime: "1:55pm"}
+  ]},
+  {origin: "MEL", trips: [
+     {departure: "Melbourne", arrival: "Melbourne", flightNumber: "QF623", departureTime: "1:55pm"}
+  ]},
+  {origin: "SYD", trips: [
+    {departure: "Sydney", arrival: "Melbourne", flightNumber: "QFXXX", departureTime: "1:55pm"},
+    {departure: "Sydney", arrival: "Melbourne", flightNumber: "QFXXX", departureTime: "1:55pm"},
+  ]},
+  {origin: "PER", trips: [
+    {departure: "Perth", arrival: "Melbourne", flightNumber: "QF623", departureTime: "1:55pm"},
+    {departure: "Perth", arrival: "Melbourne", flightNumber: "QF623", departureTime: "1:55pm"},
+  ]}
 ]
 module.exports = CityView;
