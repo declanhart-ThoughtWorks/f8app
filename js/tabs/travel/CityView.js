@@ -20,29 +20,42 @@ type Props = {
 };
 
 class CityView extends React.Component {
+  currentCity: any;
   constructor() {
     super();
   }
 
-  render() {
-    return(
-      <View>
-        <ItemsWithSeparator style={styles.move}>
-          <Row label="Departure" value={this.props.arrival} />
-          <Row label="Arrival" value={this.props.arrival} />
-          <Row label="Flight Number" value={this.props.flightNumber} />
-          <Row label="Departure Time" value={this.props.departureTime} />
-        </ItemsWithSeparator>
-        <ItemsWithSeparator style={styles.move}>
-          <Row label="Departure" value={this.props.arrival} />
-          <Row label="Arrival" value={this.props.arrival} />
-          <Row label="Flight Number" value={this.props.flightNumber} />
-          <Row label="Departure Time" value={this.props.departureTime} />
-        </ItemsWithSeparator>
-      </View>
-  )}
-}
+  buildRender() {
+    return travelDetails.map((detail) => {
+      if(detail.origin == this.props.city) {
+        return (
+          <View>
+          <ItemsWithSeparator style={styles.move}>
+            <Row label="Departure" value={detail.departure} />
+            <Row label="Arrival" value={detail.arrival} />
+            <Row label="Flight Number" value={detail.flightNumber} />
+            <Row label="Departure Time" value={detail.departureTime} />
+          </ItemsWithSeparator>
+          <ItemsWithSeparator style={styles.move}>
+            <Row label="Departure" value={detail.arrival} />
+            <Row label="Arrival" value={detail.departure} />
+            <Row label="Flight Number" value={detail.flightNumber} />
+            <Row label="Departure Time" value={detail.departureTime} />
+          </ItemsWithSeparator>
+          </View>
+        )}
+        return null;
+      });
+  }
 
+  render() {
+      return (
+        <View>
+          {this.buildRender()}
+        </View>
+      );
+  }
+}
 class Row extends React.Component {
   props: {
     label: string;
@@ -108,6 +121,7 @@ var styles = StyleSheet.create({
 
 var travelDetails = [
   {origin: "BNE", departure: "Brisbane", arrival: "Melbourne", flightNumber: "QF623", departureTime: "1:55pm"},
+  {origin: "MEL", departure: "Melbourne", arrival: "Melbourne", flightNumber: "QF623", departureTime: "1:55pm"},
   {origin: "SYD", departure: "Sydney", arrival: "Melbourne", flightNumber: "QFXXX", departureTime: "1:55pm"},
   {origin: "PER", departure: "Perth", arrival: "Melbourne", flightNumber: "QF623", departureTime: "1:55pm"},
 ]
