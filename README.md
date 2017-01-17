@@ -91,3 +91,17 @@ In a separate terminal window run:
   ```
   $ react-native start
   ```
+
+> Could not connect physical device application to Parse server on localhost
+
+1. Configure laptop to use phone's Wifi Hotspot.
+   (It should also work if both phone and laptop are on the same network)
+
+2. Go to the terminal and type:
+  ```
+  $ ifconfig
+  ```
+Then find IP address of the laptop (usually under "inet"), e.g. 192.168.43.52
+
+3. Find the file f8app/js/env.js and change the serverURL value to the laptop's IP address + Parse server port.
+e.g serverURL: 'http://192.168.43.52:8080'
