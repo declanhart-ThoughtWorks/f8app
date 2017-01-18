@@ -30,7 +30,6 @@ var PureListView = require('../../common/PureListView');
 var React = require('React');
 var Relay = require('react-relay');
 var View = require('View');
-var WiFiDetails = require('./WiFiDetails');
 
 
 const POLICIES_LINKS = [{

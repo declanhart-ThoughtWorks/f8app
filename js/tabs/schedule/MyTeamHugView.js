@@ -68,7 +68,7 @@ type Props = {
 };
 
 // TODO: Rename to MyF8View
-class MyScheduleView extends React.Component {
+class MyTeamHugView extends React.Component {
   props: Props;
 
   constructor(props) {
@@ -259,4 +259,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = connect(select, actions)(MyScheduleView);
+module.exports = connect(select, actions)(MyTeamHugView);
