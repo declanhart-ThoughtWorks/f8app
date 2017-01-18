@@ -167,13 +167,6 @@ class F8TabsView extends React.Component {
           selectedIcon={require('./notifications/img/notifications-icon-active.png')}
         />
         <MenuItem
-          title="Info"
-          selected={this.props.tab === 'info'}
-          onPress={this.onTabSelect.bind(this, 'info')}
-          icon={require('./info/img/info-icon.png')}
-          selectedIcon={require('./info/img/info-icon-active.png')}
-        />
-        <MenuItem
           title="Travel"
           selected={this.props.tab === 'travel'}
           onPress={this.onTabSelect.bind(this, 'travel')}

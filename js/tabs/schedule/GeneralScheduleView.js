@@ -33,6 +33,7 @@ var Platform = require('Platform');
 var F8DrawerLayout = require('F8DrawerLayout');
 var ScheduleListView = require('./ScheduleListView');
 var FilterScreen = require('../../filter/FilterScreen');
+var MyScheduleView = require('./MyScheduleView');
 
 var { connect } = require('react-redux');
 var {switchDay} = require('../../actions');
@@ -50,7 +51,7 @@ const data = createSelector(
 
 type Props = {
   filter: any;
-  day: number;
+  sessionType: string;
   sessions: Array<Session>;
   navigator: Navigator;
   logOut: () => void;
@@ -91,16 +92,23 @@ class GeneralScheduleView extends React.Component {
         selectedSectionColor="#51CDDA"
         stickyHeader={filterHeader}
         rightItem={filterItem}>
-        <ScheduleListView
-          title="Day 1"
-          day={1}
+        <MyScheduleView
+          title="My Schedule"
+          sessionType={"schedule"}
           sessions={this.props.sessions}
           renderEmptyList={this.renderEmptyList}
           navigator={this.props.navigator}
         />
         <ScheduleListView
-          title="Day 2"
-          day={2}
+          title="Events"
+          sessionType={"events"}
+          sessions={this.props.sessions}
+          renderEmptyList={this.renderEmptyList}
+          navigator={this.props.navigator}
+        />
+        <ScheduleListView
+          title="Sessions"
+          sessionType={"sessions"}
           sessions={this.props.sessions}
           renderEmptyList={this.renderEmptyList}
           navigator={this.props.navigator}
@@ -126,10 +134,10 @@ class GeneralScheduleView extends React.Component {
     return <FilterScreen onClose={() => this._drawer && this._drawer.closeDrawer()} />;
   }
 
-  renderEmptyList(day: number) {
+  renderEmptyList(sessionType: string) {
     return (
       <EmptySchedule
-        title={`No sessions on day ${day} match the filter`}
+        title={`No ${sessionType} found`}
         text="Check the schedule for the other day or remove the filter."
       />
     );

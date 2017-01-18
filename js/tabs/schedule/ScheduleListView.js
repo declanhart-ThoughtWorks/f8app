@@ -35,7 +35,7 @@ import type {Session} from '../../reducers/sessions';
 import type {SessionsListData} from './groupSessions';
 
 type Props = {
-  day: number;
+  sessionType: string;
   sessions: Array<Session>;
   navigator: Navigator;
   renderEmptyList?: (day: number) => ReactElement;
@@ -53,7 +53,7 @@ class ScheduleListView extends React.Component {
   constructor(props: Props) {
     super(props);
     this.state = {
-      todaySessions: groupSessions(FilterSessions.byDay(props.sessions, props.day)),
+      todaySessions: groupSessions(FilterSessions.byType(props.sessions, props.sessionType)),
     };
 
     this._innerRef = null;
@@ -66,9 +66,9 @@ class ScheduleListView extends React.Component {
 
   componentWillReceiveProps(nextProps: Props) {
     if (nextProps.sessions !== this.props.sessions ||
-        nextProps.day !== this.props.day) {
+        nextProps.sessionType !== this.props.sessionType) {
       this.setState({
-        todaySessions: groupSessions(FilterSessions.byDay(nextProps.sessions, nextProps.day)),
+        todaySessions: groupSessions(FilterSessions.byType(nextProps.sessions, nextProps.sessionType)),
       });
     }
   }
@@ -101,7 +101,7 @@ class ScheduleListView extends React.Component {
 
   renderEmptyList(): ?ReactElement {
     const {renderEmptyList} = this.props;
-    return renderEmptyList && renderEmptyList(this.props.day);
+    return renderEmptyList && renderEmptyList(this.props.sessionType);
   }
 
   openSession(session: Session, day: number) {

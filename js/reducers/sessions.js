@@ -36,7 +36,7 @@ export type Speaker = {
 
 export type Session = {
   id: string;
-  day: number;
+  sessionType: String;
   allDay: boolean;
   title: string;
   description: string;
@@ -65,7 +65,7 @@ function fromParseSpeaker(speaker: Object): Speaker {
 function fromParseSessions(session: Object): Session {
   return {
     id: session.id,
-    day: session.get('day'),
+    sessionType: session.get('sessionType'),
     allDay: session.get('allDay'),
     title: session.get('sessionTitle'),
     description: session.get('sessionDescription'),
