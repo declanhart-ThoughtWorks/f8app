@@ -77,16 +77,12 @@ class F8TabsView extends React.Component {
           />
         </TabBarItemIOS>
         <TabBarItemIOS
-          title="Travel"
-          selected={this.props.tab === 'travel'}
-          onPress={this.onTabSelect.bind(this, 'travel')}
-          icon={require('./info/img/info-icon.png')}
-          selectedIcon={require('./info/img/info-icon-active.png')}>
-          <F8TravelView info={["Brisbane",
-          "Melbourne",
-          "QF623",
-          "1:55pm"]}
-          navigator={this.props.navigator} />
+          title="Maps"
+          selected={this.props.tab === 'map'}
+          onPress={this.onTabSelect.bind(this, 'map')}
+          icon={require('./maps/img/maps-icon.png')}
+          selectedIcon={require('./maps/img/maps-icon-active.png')}>
+          <F8MapView />
         </TabBarItemIOS>
         <TabBarItemIOS
           title="My Team Hug"
@@ -100,12 +96,12 @@ class F8TabsView extends React.Component {
           />
         </TabBarItemIOS>
         <TabBarItemIOS
-          title="Maps"
-          selected={this.props.tab === 'map'}
-          onPress={this.onTabSelect.bind(this, 'map')}
-          icon={require('./maps/img/maps-icon.png')}
-          selectedIcon={require('./maps/img/maps-icon-active.png')}>
-          <F8MapView />
+          title="Travel"
+          selected={this.props.tab === 'travel'}
+          onPress={this.onTabSelect.bind(this, 'travel')}
+          icon={require('./info/img/info-icon.png')}
+          selectedIcon={require('./info/img/info-icon-active.png')}>
+          <F8TravelView navigator={this.props.navigator} />
         </TabBarItemIOS>
         <TabBarItemIOS
           title="Notifications"
