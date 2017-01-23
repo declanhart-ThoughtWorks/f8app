@@ -56,18 +56,18 @@ class F8MapView extends React.Component {
           backgroundImage={require('./img/maps-background.png')}
           backgroundColor={'#9176D2'}>
           <PureListView
-            title="Overview"
+            title="Lower Level"
             renderEmptyList={() => <MapView map={map1} />}
           />
           <PureListView
-            title="Developer Garage"
+            title="Upper Level"
             renderEmptyList={() => <MapView map={map2} />}
           />
         </ListContainer>
         <F8Button
           type="secondary"
           icon={require('./img/directions.png')}
-          caption="Directions to Fort Mason Center"
+          caption="Directions to Venue"
           onPress={this.handleGetDirections}
           style={styles.directionsButton}
         />
@@ -133,8 +133,8 @@ var styles = StyleSheet.create({
 
 function select(store) {
   return {
-    map1: store.maps.find((map) => map.name === 'Overview'),
-    map2: store.maps.find((map) => map.name === 'Developer Garage'),
+    map1: store.maps.find((map) => map.name === 'Lower Level'),
+    map2: store.maps.find((map) => map.name === 'Upper Level'),
   };
 }
 
