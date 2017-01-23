@@ -144,6 +144,13 @@ class F8TabsView extends React.Component {
           {accountItem}
         </Image>
         <MenuItem
+          title="My Team Hug"
+          selected={this.props.tab === 'my-schedule'}
+          onPress={this.onTabSelect.bind(this, 'my-schedule')}
+          icon={require('./schedule/img/my-schedule-icon.png')}
+          selectedIcon={require('./schedule/img/my-schedule-icon-active.png')}
+        />
+        <MenuItem
           title="Schedule"
           selected={this.props.tab === 'schedule'}
           onPress={this.onTabSelect.bind(this, 'schedule')}

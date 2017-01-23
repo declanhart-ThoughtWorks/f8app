@@ -71,7 +71,13 @@ class MyScheduleView extends React.Component {
   constructor(props) {
     super(props);
 
-    (this: any).renderEmptySessionsList = this.renderEmptySessionsList.bind(this);
+    this._innerRef = null;
+
+    (this: any).renderSectionHeader = this.renderSectionHeader.bind(this);
+    (this: any).renderRow = this.renderRow.bind(this);
+    (this: any).renderEmptyList = this.renderEmptyList.bind(this);
+    (this: any).storeInnerRef = this.storeInnerRef.bind(this);
+
     (this: any).openSharingSettings = this.openSharingSettings.bind(this);
     (this: any).handleSegmentChanged = this.handleSegmentChanged.bind(this);
   }
@@ -92,17 +98,28 @@ class MyScheduleView extends React.Component {
       : null;
 
     return (
-      <View>
-        {this.renderContent()}
-      </View>
+      <PureListView
+        ref={this.storeInnerRef}
+        data={this.props.sessions}
+        renderRow={this.renderRow}
+        renderSectionHeader={this.renderSectionHeader}
+        {...(this.props: any /* flow can't guarantee the shape of props */)}
+        renderEmptyList={this.renderEmptyList}
+      />
     );
   }
 
-  renderContent() {
+  renderSectionHeader(sectionData: any, sectionID: string) {
+    return <SessionsSectionHeader title={sectionID} />;
+  }
 
-    return [
-
-    ];
+  renderRow(session: Session, day: number) {
+    return (
+      <F8SessionCell
+        onPress={() => this.openSession(session, day)}
+        session={session}
+      />
+    );
   }
 
   renderNotLoggedIn() {
@@ -116,15 +133,15 @@ class MyScheduleView extends React.Component {
     );
   }
 
-  renderEmptySessionsList(day) {
+  renderEmptyList(day) {
     return (
       <EmptySchedule
         key="schedule"
         image={require('./img/no-sessions-added.png')}
         text={'Sessions you save will\nappear here.'}>
         <F8Button
-          caption={`See the day ${day} schedule`}
-          onPress={() => this.props.jumpToSchedule(day)}
+          caption={`See the schedule`}
+          onPress={() => this.props.jumpToSchedule()}
         />
       </EmptySchedule>
     );
@@ -139,6 +156,11 @@ class MyScheduleView extends React.Component {
       this.props.loadFriendsSchedules();
     }
   }
+
+  storeInnerRef(ref: ?PureListView) {
+    this._innerRef = ref;
+  }
+
 }
 
 const data = createSelector(
