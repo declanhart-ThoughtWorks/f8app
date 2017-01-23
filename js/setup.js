@@ -34,10 +34,13 @@ var { Provider } = require('react-redux');
 var configureStore = require('./store/configureStore');
 
 var {serverURL} = require('./env');
+var {appId} = require('./env');
+var {masterKey} = require('./env');
 
 function setup(): ReactClass<{}> {
-  console.disableYellowBox = true;
-  Parse.initialize('oss-f8-app-2016');
+  // console.disableYellowBox = true; // TODO:uncomment in production
+  Parse.initialize(`${appId}`);
+  Parse.masterKey = `${masterKey}`;
   Parse.serverURL = `${serverURL}/parse`;
 
   FacebookSDK.init();

@@ -26,7 +26,9 @@
 
 module.exports = {
   testMenuEnabled: true,
-  serverURL: 'http://localhost:8080',
+  serverURL: 'http://team-hug-server.herokuapp.com',
+  masterKey: 'fUoXVopsCpJjQzbvs6f6LG4',
+  appId: 'team-hug-app',
   version: 323,
   fontFamily: undefined,
 };
