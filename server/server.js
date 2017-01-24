@@ -34,10 +34,11 @@ const APP_ID = process.env.APP_ID || 'oss-f8-app-2016';
 const MASTER_KEY = process.env.MASTER_KEY || '70c6093dba5a7e55968a1c7ad3dd3e5a74ef5cac';
 const DATABASE_URI = process.env.DATABASE_URI || 'mongodb://localhost:27017/dev';
 const IS_DEVELOPMENT = process.env.NODE_ENV !== 'production';
-const DASHBOARD_AUTH = process.env.DASHBOARD_AUTH;
+const DASHBOARD_AUTH = process.env.DASHBOARD_AUTH || null;
+const SERVER_URL = process.env.SERVER_URL || 'http://localhost:' + SERVER_PORT + '/parse';
 
 Parse.initialize(APP_ID);
-Parse.serverURL = `http://localhost:${SERVER_PORT}/parse`;
+Parse.serverURL = SERVER_URL;
 Parse.masterKey = MASTER_KEY;
 Parse.Cloud.useMasterKey();
 
@@ -60,9 +61,15 @@ server.use(
     appId: APP_ID,
     masterKey: MASTER_KEY,
     fileKey: 'f33fc1a9-9ba9-4589-95ca-9976c0d52cd5',
-    serverURL: `http://${SERVER_HOST}:${SERVER_PORT}/parse`,
+    serverURL: SERVER_URL,
   })
 );
+
+console.log("IS_DEVELOPMENT")
+console.log(IS_DEVELOPMENT)
+console.log("DASHBOARD_AUTH")
+console.log(DASHBOARD_AUTH)
+
 
 if (IS_DEVELOPMENT) {
   let users;
@@ -100,5 +107,5 @@ server.use(
 server.use('/', (req, res) => res.redirect('/graphql'));
 
 server.listen(SERVER_PORT, () => console.log(
-  `Server is now running in ${process.env.NODE_ENV || 'development'} mode on http://localhost:${SERVER_PORT}`
+  `Server is now running in ${process.env.NODE_ENV || 'development'} mode on ${SERVER_URL}`
 ));
