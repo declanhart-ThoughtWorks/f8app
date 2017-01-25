@@ -138,11 +138,7 @@ class MyScheduleView extends React.Component {
       <EmptySchedule
         key="schedule"
         image={require('./img/no-sessions-added.png')}
-        text={'Sessions you save will\nappear here.'}>
-        <F8Button
-          caption={`See the schedule`}
-          onPress={() => this.props.jumpToSchedule()}
-        />
+        text={'Sessions you save will\nappear here.\n\n View the Sessions tab\n to see what\'s on'}>
       </EmptySchedule>
     );
   }

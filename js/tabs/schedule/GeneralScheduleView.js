@@ -94,14 +94,6 @@ class GeneralScheduleView extends React.Component {
         rightItem={filterItem}>
         <MyScheduleView
           title="My Schedule"
-          sessionType={""}
-          sessions={this.props.sessions}
-          renderEmptyList={this.renderEmptyList}
-          navigator={this.props.navigator}
-        />
-        <ScheduleListView
-          title="Events"
-          sessionType={"events"}
           sessions={this.props.sessions}
           renderEmptyList={this.renderEmptyList}
           navigator={this.props.navigator}
