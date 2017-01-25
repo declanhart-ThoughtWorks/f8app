@@ -38,7 +38,7 @@ var {appId} = require('./env');
 var {masterKey} = require('./env');
 
 function setup(): ReactClass<{}> {
-  // console.disableYellowBox = true; // TODO:uncomment in production
+  console.disableYellowBox = true; // TODO:uncomment in production
   Parse.initialize(`${appId}`);
   Parse.masterKey = `${masterKey}`;
   Parse.serverURL = `${serverURL}/parse`;
