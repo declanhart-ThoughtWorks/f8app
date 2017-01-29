@@ -36,7 +36,7 @@ var StyleSheet = require('F8StyleSheet');
 var View = require('View');
 var { connect } = require('react-redux');
 
-var VENUE_ADDRESS = '2 Marina Blvd, San Francisco, CA 94123';
+var VENUE_ADDRESS = '1500 Midland Highway, Creswick, Victoria 3363';
 
 class F8MapView extends React.Component {
   constructor() {
@@ -56,18 +56,18 @@ class F8MapView extends React.Component {
           backgroundImage={require('./img/maps-background.png')}
           backgroundColor={'#9176D2'}>
           <PureListView
-            title="Lower Level"
+            title="West Wing"
             renderEmptyList={() => <MapView map={map1} />}
           />
           <PureListView
-            title="Upper Level"
+            title="East Wing"
             renderEmptyList={() => <MapView map={map2} />}
           />
         </ListContainer>
         <F8Button
           type="secondary"
           icon={require('./img/directions.png')}
-          caption="Directions to Venue"
+          caption="Directions to RACQ Gold Fields Resort"
           onPress={this.handleGetDirections}
           style={styles.directionsButton}
         />
@@ -133,8 +133,8 @@ var styles = StyleSheet.create({
 
 function select(store) {
   return {
-    map1: store.maps.find((map) => map.name === 'Lower Level'),
-    map2: store.maps.find((map) => map.name === 'Upper Level'),
+    map1: store.maps.find((map) => map.name === 'west wing'),
+    map2: store.maps.find((map) => map.name === 'east wing'),
   };
 }
 
