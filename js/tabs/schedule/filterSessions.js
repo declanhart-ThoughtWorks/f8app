@@ -50,10 +50,16 @@ function bySchedule(sessions: Array<Session>, schedule: StringMap): Array<Sessio
   );
 }
 
+function byScheduleAndEvents(sessions: Array<Session>, schedule: StringMap) : Array<Session> {
+  return sessions.filter(
+    (session) => session.sessionType === "events"
+  );
+}
+
 function byType(sessions: Array<Session>, sessionType: string): Array<Session> {
   return sessions.filter(
     (session) => session.sessionType === sessionType
   );
 }
 
-module.exports = {byDay, byTopics, bySchedule, byType};
+module.exports = {byDay, byTopics, bySchedule, byScheduleAndEvents, byType};

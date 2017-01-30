@@ -34,6 +34,8 @@ var React = require('React');
 var PureListView = require('../../common/PureListView');
 var ScheduleListView = require('./ScheduleListView');
 var FriendsListView = require('./FriendsListView');
+var SessionsSectionHeader = require('./SessionsSectionHeader');
+var F8SessionCell = require('./F8SessionCell');
 var View = require('View');
 
 var { connect } = require('react-redux');
@@ -157,12 +159,18 @@ class MyScheduleView extends React.Component {
     this._innerRef = ref;
   }
 
+  openSession(session: Session, day: number) {
+    this.props.navigator.push({
+      day,
+      session,
+    });
+  }
 }
 
 const data = createSelector(
   (store) => store.sessions,
   (store) => store.schedule,
-  (sessions, schedule) => FilterSessions.bySchedule(sessions, schedule),
+  (sessions, schedule) => FilterSessions.byScheduleAndEvents(sessions, schedule),
 );
 
 function select(store) {
