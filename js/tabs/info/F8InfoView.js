@@ -27,6 +27,9 @@
 var LinksList = require('./LinksList');
 var ListContainer = require('ListContainer');
 var PureListView = require('../../common/PureListView');
+var WiFiDetails = require('./WiFiDetails');
+var StyleSheet = require('F8StyleSheet');
+var F8Colors = require('F8Colors');
 var React = require('React');
 var Relay = require('react-relay');
 var View = require('View');
@@ -45,53 +48,67 @@ const POLICIES_LINKS = [{
 
 function F8InfoView() {
   return (
-    <ListContainer
-      title="Information"
-      backgroundImage={require('./img/info-background.png')}
-      backgroundColor={'#47BFBF'}>
+    <View style={styles.container}>
       <InfoList />
-    </ListContainer>
+    </View>
   );
 }
 
-function InfoList({viewer: {config, faqs, pages}, ...props}) {
+function InfoList() {
   return (
     <PureListView
       renderEmptyList={() => (
         <View>
           <WiFiDetails
-            network={config.wifiNetwork}
-            password={config.wifiPassword}
+            network="blah"
+            password="blah"
           />
-          <LinksList title="Facebook pages" links={pages} />
-          <LinksList title="Facebook policies" links={POLICIES_LINKS} />
         </View>
       )}
-      {...(props: any /* flow can't guarantee the shape of props */)}
     />
   );
 }
 
-InfoList = Relay.createContainer(InfoList, {
-  fragments: {
-    viewer: () => Relay.QL`
-      fragment on User {
-        config {
-          wifiNetwork
-          wifiPassword
-        }
-        faqs {
-          question
-          answer
-        }
-        pages {
-          title
-          url
-          logo
-        }
-      }
-    `,
+var styles = StyleSheet.create({
+  container: {
+    flex: 1,
   },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: 10,
+  },
+  label: {
+    fontSize: 15,
+    color: F8Colors.lightText,
+  },
+  value: {
+    fontSize: 15,
+    color: '#002350',
+  },
+  button: {
+    marginTop: 25,
+    marginHorizontal: 20,
+  },
+  directionsButton: {
+    borderTopWidth: 1,
+    borderTopColor: '#eee',
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    backgroundColor: 'white',
+    ios: {
+      bottom: 49,
+    },
+    android: {
+      bottom: 0,
+    },
+  },
+  move: {
+    paddingTop: 50,
+    paddingHorizontal: 50,
+    backgroundColor: 'white'
+  }
 });
 
 module.exports = F8InfoView;

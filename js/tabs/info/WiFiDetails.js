@@ -58,10 +58,6 @@ class WiFiDetails extends React.Component {
       : 'Copy password';
     return (
       <Section title="WiFi" style={styles.container}>
-      <SegmentedControlTab
-               values={['First', 'Second', 'Third']}
-               onTabPress= {index => console.log(index)}
-               />
         <ItemsWithSeparator>
           <Row label="Network" value={this.props.network} />
           <Row label="Password" value={this.props.password} />

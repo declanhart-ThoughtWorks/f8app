@@ -23,21 +23,18 @@
  */
 'use strict';
 
-var EmptySchedule = require('./EmptySchedule');
 var F8Button = require('F8Button');
-var FilterSessions = require('./filterSessions');
 var ListContainer = require('ListContainer');
 var LoginButton = require('../../common/LoginButton');
 var Navigator = require('Navigator');
 var ProfilePicture = require('../../common/ProfilePicture');
 var React = require('React');
 var PureListView = require('../../common/PureListView');
-var ScheduleListView = require('./ScheduleListView');
-var FriendsListView = require('./FriendsListView');
 var Platform = require('Platform');
 var View = require('View');
 var StyleSheet = require('F8StyleSheet');
 var F8Colors = require('F8Colors');
+var F8InfoView = require('F8InfoView');
 
 var { connect } = require('react-redux');
 
@@ -57,27 +54,12 @@ var { createSelector } = require('reselect');
 
 
 type Props = {
-  user: User;
-  sessions: Array<Session>;
-  friends: Array<FriendsSchedule>;
-  schedule: Schedule;
-  navigator: Navigator;
-  logOut: () => void;
-  jumpToSchedule: (day: number) => void;
-  loadFriendsSchedules: () => void;
 };
 
 // TODO: Rename to MyF8View
 class MyTeamHugView extends React.Component {
   props: Props;
 
-  constructor(props) {
-    super(props);
-
-    (this: any).renderEmptySessionsList = this.renderEmptySessionsList.bind(this);
-    (this: any).openSharingSettings = this.openSharingSettings.bind(this);
-    (this: any).handleSegmentChanged = this.handleSegmentChanged.bind(this);
-  }
   render() {
 
     const content = (
@@ -86,13 +68,14 @@ class MyTeamHugView extends React.Component {
           title="My Team Hug"
           backgroundImage={require('./img/schedule-background.png')}
           backgroundColor={'#9176D2'}>
-          <View
+          <PureListView
             title="Contacts"
           />
-          <View
+          <PureListView
             title="Info"
+            renderEmptyList={() => <F8InfoView/>}
           />
-          <View
+          <PureListView
             title="Games"
           />
         </ListContainer>
@@ -112,92 +95,11 @@ class MyTeamHugView extends React.Component {
       </F8DrawerLayout>
     );
   }
-
-    renderSectionHeader(sectionData: any, sectionID: string) {
-      return <SessionsSectionHeader title={sectionID} />;
-    }
-
-    renderRow(session: Session, day: number) {
-      return (
-        <F8SessionCell
-          onPress={() => this.openSession(session, day)}
-          session={session}
-        />
-      );
-    }
-
-    renderEmptyList(): ?ReactElement {
-      const {renderEmptyList} = this.props;
-      return renderEmptyList && renderEmptyList(this.props.sessionType);
-    }
-
-    openSession(session: Session, day: number) {
-      this.props.navigator.push({
-        day,
-        session,
-        allSessions: this.state.todaySessions,
-      });
-    }
-
-    storeInnerRef(ref: ?PureListView) {
-      this._innerRef = ref;
-    }
-
-    scrollTo(...args: Array<any>) {
-      this._innerRef && this._innerRef.scrollTo(...args);
-    }
-
-    getScrollResponder(): any {
-      return this._innerRef && this._innerRef.getScrollResponder();
-    }
-
-
-  renderNotLoggedIn() {
-    return (
-      <EmptySchedule
-        key="login"
-        title="Log in to make a schedule."
-        text="You’ll be able to save sessions to your schedule to view or share later.">
-        <LoginButton source="My Team Hug" />
-      </EmptySchedule>
-    );
-  }
-
-  renderEmptySessionsList(day) {
-    return (
-      <EmptySchedule
-        key="schedule"
-        image={require('./img/no-sessions-added.png')}
-        text={'Sessions you save will\nappear here.'}>
-        <F8Button
-          caption={`See the day ${day} schedule`}
-          onPress={() => this.props.jumpToSchedule(day)}
-        />
-      </EmptySchedule>
-    );
-  }
-
-  openSharingSettings() {
-    this.props.navigator.push({shareSettings: 1});
-  }
-
-  handleSegmentChanged(segment) {
-    if (segment === 2 /* friends */) {
-      this.props.loadFriendsSchedules();
-    }
-  }
 }
-
-const data = createSelector(
-  (store) => store.sessions,
-  (store) => store.schedule,
-  (sessions, schedule) => FilterSessions.bySchedule(sessions, schedule),
-);
 
 function select(store) {
   return {
     user: store.user,
-    sessions: data(store),
     schedule: store.schedule,
     // Only show friends who have something in their schedule
     friends: store.friendsSchedules.filter(
