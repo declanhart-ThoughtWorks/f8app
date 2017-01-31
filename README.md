@@ -111,3 +111,20 @@ Example:
   ```
   $ serverURL: 'http://192.168.43.52:8080'
   ```
+
+  > CFBundleIdentifier", Does Not Exist
+
+  1. Open with XCode: f8app/ios/F8v2.xcworkspace
+
+  2. Navigate to this file: f8app/node_modules/react-native/React/Views/RCTScrollView.m
+
+  3. Around line 350, replace all instances of
+    ```
+    _refreshControl
+    ```
+    with
+
+    ```
+    refreshControl
+    ```
+    4. Press command + k to clean the project. All the red compile warnings should be gone.
