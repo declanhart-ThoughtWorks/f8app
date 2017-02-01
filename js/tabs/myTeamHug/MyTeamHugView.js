@@ -35,6 +35,7 @@ var View = require('View');
 var StyleSheet = require('F8StyleSheet');
 var F8Colors = require('F8Colors');
 var F8InfoView = require('F8InfoView');
+var ContactsView = require('./ContactsView');
 
 var { connect } = require('react-redux');
 
@@ -70,6 +71,7 @@ class MyTeamHugView extends React.Component {
           backgroundColor={'#9176D2'}>
           <PureListView
             title="Contacts"
+            renderEmptyList={() => <ContactsView name="Madeline Mios" number="0434959521" role="Organiser"/>}
           />
           <PureListView
             title="Info"

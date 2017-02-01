@@ -39,6 +39,7 @@ var {
   loadMaps,
   loadNotifications,
   loadSessions,
+  loadContacts,
   loadFriendsSchedules,
   loadSurveys,
 } = require('./actions');
@@ -56,6 +57,7 @@ var F8App = React.createClass({
     this.props.dispatch(loadMaps());
     this.props.dispatch(loadConfig());
     this.props.dispatch(loadSessions());
+    this.props.dispatch(loadContacts());
     this.props.dispatch(loadFriendsSchedules());
     this.props.dispatch(loadSurveys());
 

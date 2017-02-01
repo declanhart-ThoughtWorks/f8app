@@ -77,7 +77,10 @@ class LoginScreen extends React.Component {
             Apr 28 – 30, 2017
           </Animated.Text>
           <Animated.Text style={[styles.h3, this.fadeIn(1200, 10)]}>
-            SOMEWHERE IN AUSTRALIA
+            RACV Gold Fields Resort
+          </Animated.Text>
+          <Animated.Text style={[styles.h2, this.fadeIn(1200, 10)]}>
+            Learn. Grow. Thrive.
           </Animated.Text>
         </View>
         <Animated.View style={[styles.section, styles.last, this.fadeIn(2500, 20)]}>

@@ -67,7 +67,7 @@ class F8MapView extends React.Component {
         <F8Button
           type="secondary"
           icon={require('./img/directions.png')}
-          caption="Directions to RACQ Gold Fields Resort"
+          caption="Directions to RACV Gold Fields Resort"
           onPress={this.handleGetDirections}
           style={styles.directionsButton}
         />

@@ -46,7 +46,7 @@ class LoginModal extends React.Component {
           style={styles.content}
           source={require('./img/login-background.png')}>
           <Text style={styles.h1}>
-            Log in with Facebook
+            Log in with OKTA
           </Text>
           <Text style={styles.h2}>
             to save sessions to{'\n'}your schedule.
