@@ -36,6 +36,8 @@ var StyleSheet = require('F8StyleSheet');
 var F8Colors = require('F8Colors');
 var F8InfoView = require('F8InfoView');
 var ContactsView = require('./ContactsView');
+var F8DrawerLayout = require('F8DrawerLayout');
+var FilterScreen = require('../../filter/FilterScreen');
 
 var { connect } = require('react-redux');
 
@@ -60,6 +62,7 @@ type Props = {
 // TODO: Rename to MyF8View
 class MyTeamHugView extends React.Component {
   props: Props;
+  _drawer: ?F8DrawerLayout;
 
   render() {
 
@@ -96,6 +99,11 @@ class MyTeamHugView extends React.Component {
         {content}
       </F8DrawerLayout>
     );
+  }
+
+
+  renderNavigationView() {
+    return <FilterScreen onClose={() => this._drawer && this._drawer.closeDrawer()} />;
   }
 }
 

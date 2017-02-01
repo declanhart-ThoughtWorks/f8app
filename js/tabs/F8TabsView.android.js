@@ -43,6 +43,7 @@ var LoginButton = require('../common/LoginButton');
 var ProfilePicture = require('../common/ProfilePicture');
 var GeneralScheduleView = require('./schedule/GeneralScheduleView');
 var MyScheduleView = require('./schedule/MyScheduleView');
+var MyTeamHugView = require('./myTeamHug/MyTeamHugView');
 var unseenNotificationsCount = require('./notifications/unseenNotificationsCount');
 
 var { switchTab, logOutWithPrompt } = require('../actions');
@@ -112,7 +113,7 @@ class F8TabsView extends React.Component {
       myF8Item = (
         <MenuItem
           title="My Team Hug"
-          selected={this.props.tab === 'my-schedule'}
+          selected={this.props.tab === 'my-team-hug'}
           onPress={this.onTabSelect.bind(this, 'my-schedule')}
           icon={require('./schedule/img/my-schedule-icon.png')}
           selectedIcon={require('./schedule/img/my-schedule-icon-active.png')}
@@ -145,8 +146,8 @@ class F8TabsView extends React.Component {
         </Image>
         <MenuItem
           title="My Team Hug"
-          selected={this.props.tab === 'my-schedule'}
-          onPress={this.onTabSelect.bind(this, 'my-schedule')}
+          selected={this.props.tab === 'my-team-hug'}
+          onPress={this.onTabSelect.bind(this, 'my-team-hug')}
           icon={require('./schedule/img/my-schedule-icon.png')}
           selectedIcon={require('./schedule/img/my-schedule-icon-active.png')}
         />
@@ -194,11 +195,10 @@ class F8TabsView extends React.Component {
           />
         );
 
-      case 'my-schedule':
+      case 'my-team-hug':
         return (
-          <MyScheduleView
+          <MyTeamHugView
             navigator={this.props.navigator}
-            onJumpToSchedule={() => this.props.onTabSelect('schedule')}
           />
         );
 
