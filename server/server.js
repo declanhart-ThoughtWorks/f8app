@@ -62,6 +62,12 @@ server.use(
     masterKey: MASTER_KEY,
     fileKey: 'f33fc1a9-9ba9-4589-95ca-9976c0d52cd5',
     serverURL: SERVER_URL,
+    push: {
+     android: {
+       senderId: '439066530470',
+       apiKey: 'AIzaSyDWtUG0RXMbsjZ4Z2JvRPZYDaW85mX_rTE'
+     }
+    }
   })
 );
 
