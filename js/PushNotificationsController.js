@@ -42,7 +42,7 @@ var {
 
 import type {Dispatch} from './actions/types';
 
-const PARSE_CLOUD_GCD_SENDER_ID = '1076345567071';
+const PARSE_CLOUD_GCD_SENDER_ID = '439066530470';
 
 class AppBadgeController extends React.Component {
   props: {
