@@ -77,13 +77,6 @@ var F8App = React.createClass({
       this.props.dispatch(loadSurveys());
       CodePush.sync({installMode: CodePush.InstallMode.ON_NEXT_RESUME});
     }
-    if(appState ==='background'){
-      PushNotification.localNotificationSchedule({
-        message: "My Notification Message", // (required)
-        date: new Date(Date.now() + (5 * 1000)) // in 60 secs
-      });
-      console.log('app is in background', 5);
-    }
   },
 
   render: function() {
