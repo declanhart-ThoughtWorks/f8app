@@ -23,8 +23,6 @@
  */
 'use strict';
 
-import SegmentedControlTab from 'react-native-segmented-control-tab';
-
 var Clipboard = require('Clipboard');
 var F8Button = require('F8Button');
 var ToastAndroid = require('ToastAndroid');

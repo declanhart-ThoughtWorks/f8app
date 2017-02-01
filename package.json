@@ -29,7 +29,6 @@
     "react-native-linear-gradient": "~1.5.0",
     "react-native-push-notification": "^1.0.8",
     "react-native-radio-buttons": "^0.13.0",
-    "react-native-segmented-control-tab": "~2.0.1",
     "react-native-send-intent": "~1.0.7",
     "react-native-share": "frantic/react-native-share#674df947b3",
     "react-redux": "~4.4.5",
