@@ -53,6 +53,10 @@ function getSchema() {
 
 const server = express();
 
+// Serve static assets from the /public folder
+server.use('/public', express.static(path.join(__dirname, '/public')));
+
+
 server.use(
   '/parse',
   new ParseServer({
@@ -87,31 +91,30 @@ if (IS_DEVELOPMENT) {
   server.use(
     '/dashboard',
     ParseDashboard({
+      allowInsecureHTTP: true,
       apps: [{
-        serverURL: '/parse',
+        serverURL: SERVER_URL,
         appId: APP_ID,
         masterKey: MASTER_KEY,
-        appName: 'F8-App-2016',
+        appName: 'Team-Hug-App-2017',
+        javascriptKey: "NOT USED",
+        restKey: "NOT USED",
       }],
       users,
     }, IS_DEVELOPMENT),
   );
 }
 
-server.use(
-  '/graphql',
-  graphQLHTTP((request) => {
-    return {
-      graphiql: IS_DEVELOPMENT,
-      pretty: IS_DEVELOPMENT,
-      schema: getSchema(),
-      rootValue: Math.random(), // TODO: Check credentials, assign user
-    };
-  })
-);
+// Parse Server plays nicely with the rest of your web routes
+server.get('/', function(req, res) {
+  res.status(200).send(`Welcome to Team Hug Parse - visit /dashboard to work with Parse`);
+});
 
-server.use('/', (req, res) => res.redirect('/graphql'));
+var httpServer = require('http').createServer(server);
 
-server.listen(SERVER_PORT, () => console.log(
+httpServer.listen(SERVER_PORT, () => console.log(
   `Server is now running in ${process.env.NODE_ENV || 'development'} mode on ${SERVER_URL}`
 ));
+
+// This will enable the Live Query real-time server
+ParseServer.createLiveQueryServer(httpServer);
